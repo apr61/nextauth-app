@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import toast from "react-hot-toast"
 import axios from "axios"
+import toast, {Toaster} from "react-hot-toast"
 
 const userIntialState = {
     username: '',
@@ -48,6 +48,7 @@ const SignupPage = () => {
             </div>
             <button className='px-4 py-2 bg-emerald-400 text-white rounded-md hover:bg-opacity-90 disabled:bg-opacity-70' onClick={handleSignup} disabled={!btnIsDisabled}>Sign Up</button>
             <Link href="/login" className='hover:underline'>Have an account?</Link>
+            <Toaster position='top-right'/>
         </div>
     )
 }
