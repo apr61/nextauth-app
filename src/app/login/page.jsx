@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-import toast, {Toaster} from "react-hot-toast"
+import toast from "react-hot-toast"
 import axios from "axios"
 import { useRouter } from 'next/navigation'
 
@@ -41,7 +41,6 @@ const LoginPage = () => {
             </div>
             <button className='px-4 py-2 bg-emerald-400 text-white rounded-md hover:bg-opacity-90 disabled:bg-opacity-70' onClick={handleLogin} disabled={!isBtnDisabled}>Login</button>
             <Link href="/signup" className='hover:underline'>Create a new Account</Link>
-            <Toaster position='top-right' />
         </div>
     )
 }

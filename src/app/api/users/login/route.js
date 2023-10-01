@@ -3,6 +3,7 @@ import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 import bcryptjs from "bcryptjs"
 import jwt from "jsonwebtoken"
+import { getDataFromToken } from "@/helpers/getDataFromToken";
 
 connect()
 
@@ -32,10 +33,23 @@ export async function POST(request) {
         })
         response.cookies.set("token", token, {
             httpOnly: true,
-            sameSite: "Lax"
+            sameSite: "lax"
         })
         return response
     } catch (error) {
         return NextResponse.json({error: error.message}, {status: 500})
+    }
+}
+
+export async function GET(request){
+    try {
+        const userId = await getDataFromToken(request)
+        const user = await User.findOne({_id: userId}).select("-password")
+        return NextResponse.json({
+            message: "user found",
+            user
+        })
+    } catch (error) {
+        return NextResponse.json({error: error.message}, {status: 400})
     }
 }
